@@ -142,8 +142,8 @@ import Draggable from 'vuedraggable'
 const form = reactive({
   protocol: 'http',
   host: '127.0.0.1',
-  port: '9090',
-  secondaryPath: '',
+  port: '7880',
+  secondaryPath: '/clash',
   password: '',
   label: '',
 })

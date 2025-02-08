@@ -1,7 +1,13 @@
 :80 {
-  file_server
+    handle_path /clash* {
+        reverse_proxy http://localhost:9090 {
+            header_up Host localhost:9090
+        }
+    }
 
-  root * .
-  
-  try_files {path} /index.html
+    handle {
+        root * .
+        file_server
+        try_files {path} /index.html
+    }
 }
