@@ -11,7 +11,7 @@ services:
       - '7880:80'
       - '9090:9090'
     volumes:
-      - ./mihomo:/root/.config/clash_core
+      - ./mihomo:/root/.config/mihomo
       - /dev/net/tun:/dev/net/tun
       # 共享host的时间环境
       - /etc/timezone:/etc/timezone:ro
