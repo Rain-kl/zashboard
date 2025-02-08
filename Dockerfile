@@ -19,4 +19,9 @@ WORKDIR /srv
 COPY --from=builder /build/dist/. .
 COPY Caddyfile .
 
-CMD ["caddy", "run"]
+RUN mkdir "/app"
+WORKDIR /app
+COPY ./clash_core/mihomo .
+COPY ./script/start.sh .
+
+CMD ["ash", "start.sh"]
