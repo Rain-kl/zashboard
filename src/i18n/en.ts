@@ -46,7 +46,6 @@ const en = {
   customTableColumns: 'Custom Table Columns',
   customCardLines: 'Custom Card Lines',
   close: 'Close',
-  details: 'Details',
   theme: 'Theme',
   proxyProvider: 'Proxy Provider',
   ruleProvider: 'Rule Provider',
@@ -88,6 +87,7 @@ const en = {
   fonts: 'Fonts',
   unauthorizedTip: 'Unauthorized, please login again.',
   restartCore: 'Restart Core',
+  checkUpgrade: 'Check Upgrade',
   autoUpgrade: 'Auto Upgrade',
   secondaryPath: 'Secondary Path',
   secondaryPathTip: 'If present, start with a "/", otherwise leave it empty.',
@@ -152,6 +152,8 @@ const en = {
   optional: 'Optional',
   swipeInTabs: 'Swipe To Switch Between Tabs In Page',
   connectionIP: 'Connection IP',
+  simpleCardPreset: 'Simple Preset',
+  detailedCardPreset: 'Detailed Preset',
 }
 
 export type LANG_MESSAGE = typeof en

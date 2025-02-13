@@ -2,6 +2,50 @@
 
 # Changelog
 
+## [1.63.1](https://github.com/Zephyruso/zashboard/compare/v1.63.0...v1.63.1) (2025-02-12)
+
+
+### Bug Fixes
+
+* source ip input & backend version style ([441871c](https://github.com/Zephyruso/zashboard/commit/441871cef532d52787273270e489cd3cf7d3d210))
+* timeout for notification ([2ecbb6b](https://github.com/Zephyruso/zashboard/commit/2ecbb6bd40780266608c4cdc33ba1756ab44aeb8))
+
+## [1.63.0](https://github.com/Zephyruso/zashboard/compare/v1.62.1...v1.63.0) (2025-02-10)
+
+
+### Features
+
+* autocomplete for source ip label ([83640ca](https://github.com/Zephyruso/zashboard/commit/83640ca5e0a334a86202cc379042fb9c72ac6254))
+* switch for core upgrade check ([5ceaa73](https://github.com/Zephyruso/zashboard/commit/5ceaa737bc51d052d71a883ed4db56124d3e76a3))
+
+
+### Bug Fixes
+
+* card/table customize style ([8d3a382](https://github.com/Zephyruso/zashboard/commit/8d3a382d6a10f9d21b08f8c176cba1145d905527))
+* grid style ([677abad](https://github.com/Zephyruso/zashboard/commit/677abad58014930d6cadbc68316dd6a861158018))
+* remove deprecated details button ([b06492a](https://github.com/Zephyruso/zashboard/commit/b06492af4b6ec28d403ccc001b0436140b420ec9))
+
+## [1.62.1](https://github.com/Zephyruso/zashboard/compare/v1.62.0...v1.62.1) (2025-02-08)
+
+
+### Bug Fixes
+
+* card customize style ([3cb1e84](https://github.com/Zephyruso/zashboard/commit/3cb1e84bced195d370e049a64e3aed3a188ff4bf))
+
+## [1.62.0](https://github.com/Zephyruso/zashboard/compare/v1.61.2...v1.62.0) (2025-02-08)
+
+
+### Features
+
+* move card/table customization to connections popup ([e372da1](https://github.com/Zephyruso/zashboard/commit/e372da1ed60cd2c2e85fa93b0ccc54cd4da2312d))
+* preset for connection card style ([539e23c](https://github.com/Zephyruso/zashboard/commit/539e23c968d5384f7fb7d8027fb91ae6580875b8))
+
+
+### Bug Fixes
+
+* default testurl with https ([a1eb0a4](https://github.com/Zephyruso/zashboard/commit/a1eb0a41f2a63ee2ca469467609033b91bd5eeb8))
+* toast & settings style ([f33a077](https://github.com/Zephyruso/zashboard/commit/f33a077e7386779ec438f59b55a2b0956b7e7635))
+
 ## [1.61.2](https://github.com/Zephyruso/zashboard/compare/v1.61.1...v1.61.2) (2025-02-08)
 
 

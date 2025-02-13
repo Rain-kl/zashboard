@@ -39,7 +39,6 @@ export enum CONNECTIONS_TABLE_ACCESSOR_KEY {
   SourcePort = 'sourcePort',
   SniffHost = 'sniffHost',
   Destination = 'destination',
-  Details = 'details',
 }
 
 export enum TABLE_WIDTH_MODE {
@@ -149,3 +148,26 @@ export enum PROXY_TYPE {
   URLTest = 'urltest',
   LoadBalance = 'loadbalance',
 }
+
+export const SIMPLE_CARD_STYLE = [
+  [CONNECTIONS_TABLE_ACCESSOR_KEY.Host, CONNECTIONS_TABLE_ACCESSOR_KEY.ConnectTime],
+  [
+    CONNECTIONS_TABLE_ACCESSOR_KEY.Chains,
+    CONNECTIONS_TABLE_ACCESSOR_KEY.DlSpeed,
+    CONNECTIONS_TABLE_ACCESSOR_KEY.Close,
+  ],
+]
+
+export const DETAILED_CARD_STYLE = [
+  [CONNECTIONS_TABLE_ACCESSOR_KEY.Host, CONNECTIONS_TABLE_ACCESSOR_KEY.ConnectTime],
+  [
+    CONNECTIONS_TABLE_ACCESSOR_KEY.Type,
+    CONNECTIONS_TABLE_ACCESSOR_KEY.Download,
+    CONNECTIONS_TABLE_ACCESSOR_KEY.Upload,
+  ],
+  [
+    CONNECTIONS_TABLE_ACCESSOR_KEY.Chains,
+    CONNECTIONS_TABLE_ACCESSOR_KEY.DlSpeed,
+    CONNECTIONS_TABLE_ACCESSOR_KEY.Close,
+  ],
+]

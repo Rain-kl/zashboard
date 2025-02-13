@@ -3,6 +3,7 @@
     <TextInput
       v-model="form.name"
       placeholder="Domain Name"
+      :clearable="true"
     />
     <select
       v-model="form.type"

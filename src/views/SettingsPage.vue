@@ -34,7 +34,7 @@
       </div>
       <div class="card-body grid grid-cols-1 gap-2 lg:grid-cols-2">
         <div class="flex items-center gap-2">
-          {{ $t('splitOverviewPage') }}:
+          {{ $t('splitOverviewPage') }}
           <input
             class="toggle"
             type="checkbox"
@@ -45,7 +45,7 @@
           class="flex items-center gap-2"
           v-if="!splitOverviewPage"
         >
-          {{ $t('showIPAndConnectionInfo') }}:
+          {{ $t('showIPAndConnectionInfo') }}
           <input
             class="toggle"
             type="checkbox"
@@ -53,7 +53,7 @@
           />
         </div>
         <div class="flex items-center gap-2">
-          {{ $t('autoIPCheckWhenStart') }}:
+          {{ $t('autoIPCheckWhenStart') }}
           <input
             class="toggle"
             type="checkbox"
@@ -61,7 +61,7 @@
           />
         </div>
         <div class="flex items-center gap-2">
-          {{ $t('autoConnectionCheckWhenStart') }}:
+          {{ $t('autoConnectionCheckWhenStart') }}
           <input
             class="toggle"
             type="checkbox"
@@ -69,7 +69,7 @@
           />
         </div>
         <div class="flex items-center gap-2 max-md:hidden">
-          {{ $t('showStatisticsWhenSidebarCollapsed') }}:
+          {{ $t('showStatisticsWhenSidebarCollapsed') }}
           <input
             class="toggle"
             type="checkbox"

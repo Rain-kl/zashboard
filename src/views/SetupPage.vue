@@ -95,9 +95,7 @@
             :key="element.uuid"
             class="flex items-center gap-2"
           >
-            <button class="btn btn-sm cursor-grab">
-              <AdjustmentsVerticalIcon class="h-4 w-4" />
-            </button>
+            <ChevronUpDownIcon class="h-4 w-4 cursor-grab" />
             <button
               class="btn btn-sm flex-1"
               @click="selectBackend(element.uuid)"
@@ -108,7 +106,7 @@
               class="btn btn-circle btn-sm"
               @click="() => removeBackend(element.uuid)"
             >
-              <MinusCircleIcon class="h-4 w-4" />
+              <XMarkIcon class="h-4 w-4" />
             </button>
           </div>
         </template>
@@ -125,17 +123,13 @@
 import ImportSettings from '@/components/common/ImportSettings.vue'
 import TextInput from '@/components/common/TextInput.vue'
 import LanguageSelect from '@/components/settings/LanguageSelect.vue'
-import { useNotification } from '@/composables/tip'
-import { ROUTE_NAME } from '@/config'
+import { useNotification } from '@/composables/notification'
+import { ROUTE_NAME } from '@/constant'
 import { getUrlFromBackend } from '@/helper'
 import router from '@/router'
 import { activeUuid, addBackend, backendList, removeBackend } from '@/store/setup'
 import type { Backend } from '@/types'
-import {
-  AdjustmentsVerticalIcon,
-  MinusCircleIcon,
-  QuestionMarkCircleIcon,
-} from '@heroicons/vue/24/outline'
+import { ChevronUpDownIcon, QuestionMarkCircleIcon, XMarkIcon } from '@heroicons/vue/24/outline'
 import { reactive } from 'vue'
 import Draggable from 'vuedraggable'
 

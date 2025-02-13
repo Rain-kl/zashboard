@@ -5,6 +5,9 @@
         <div class="text-lg font-medium sm:text-xl">
           {{ proxyProvider.name }}
           <span class="text-sm"> ({{ sortedProxies.length }}) </span>
+          <span class="ml-1 text-sm text-base-content/60"
+            >{{ $t('updated') }} {{ fromNow(proxyProvider.updatedAt) }}</span
+          >
         </div>
         <div class="flex-1" />
         <div class="flex gap-2">
@@ -30,22 +33,20 @@
         </div>
       </div>
       <progress
-        class="progress text-slate-500"
+        class="progress mt-2 text-slate-500"
         v-if="subscriptionInfo"
         :value="subscriptionInfo.percentage"
         max="100"
       />
-      <div class="flex flex-col text-base-content/80 sm:flex-row sm:gap-4">
-        <template v-if="subscriptionInfo">
-          <div class="text-sm">
-            {{ subscriptionInfo.used }} / {{ subscriptionInfo.total }} (
-            {{ subscriptionInfo.percentage }}% )
-          </div>
-          <div class="text-sm">
-            {{ subscriptionInfo.expirePrefix() }}: {{ subscriptionInfo.expireStr() }}
-          </div>
-        </template>
-        <div class="text-sm">{{ $t('updated') }} {{ fromNow(proxyProvider.updatedAt) }}</div>
+      <div
+        v-if="subscriptionInfo"
+        class="flex justify-between text-sm text-base-content/60"
+      >
+        <div>
+          {{ subscriptionInfo.used }} / {{ subscriptionInfo.total }} (
+          {{ subscriptionInfo.percentage }}% )
+        </div>
+        <div>{{ subscriptionInfo.expirePrefix() }}: {{ subscriptionInfo.expireStr() }}</div>
       </div>
     </template>
     <template v-slot:preview>

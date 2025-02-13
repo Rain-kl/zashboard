@@ -8,18 +8,22 @@
       <div class="grid grid-cols-1 gap-2 lg:grid-cols-2">
         <div class="flex items-center gap-2">
           <span class="whitespace-nowrap">
-            {{ $t('connectionStyle') }}:
-            {{ $t('table') }}
+            {{ $t('connectionStyle') }}
           </span>
-          <input
-            class="toggle"
-            type="checkbox"
+          <select
+            class="select select-bordered select-sm min-w-24"
             v-model="useConnectionCard"
-          />
-          {{ $t('card') }}
+          >
+            <option :value="false">
+              {{ $t('table') }}
+            </option>
+            <option :value="true">
+              {{ $t('card') }}
+            </option>
+          </select>
         </div>
         <div class="flex items-center gap-2">
-          {{ $t('proxyChainDirection') }}:
+          {{ $t('proxyChainDirection') }}
           <select
             class="select select-bordered select-sm w-24"
             v-model="proxyChainDirection"
@@ -34,9 +38,41 @@
           </select>
         </div>
       </div>
-
-      <ConnectionCardSettings v-if="useConnectionCard" />
-      <TableSettings v-else />
+      <div
+        class="grid grid-cols-1 gap-2 lg:grid-cols-2"
+        v-if="!useConnectionCard"
+      >
+        <div class="flex items-center gap-2">
+          <div>{{ $t('tableWidthMode') }}</div>
+          <select
+            class="select select-bordered select-sm min-w-24"
+            v-model="tableWidthMode"
+          >
+            <option
+              v-for="opt in Object.values(TABLE_WIDTH_MODE)"
+              :key="opt"
+              :value="opt"
+            >
+              {{ $t(opt) }}
+            </option>
+          </select>
+        </div>
+        <div class="flex items-center gap-2">
+          <div>{{ $t('tableSize') }}</div>
+          <select
+            class="select select-bordered select-sm min-w-24"
+            v-model="tableSize"
+          >
+            <option
+              v-for="opt in Object.values(TABLE_SIZE)"
+              :key="opt"
+              :value="opt"
+            >
+              {{ $t(opt) }}
+            </option>
+          </select>
+        </div>
+      </div>
       <div class="divider"></div>
       <SourceIPLabels />
     </div>
@@ -44,9 +80,7 @@
 </template>
 
 <script setup lang="ts">
-import ConnectionCardSettings from '@/components/settings/ConnectionCardSettings.vue'
 import SourceIPLabels from '@/components/settings/SourceIPLabels.vue'
-import TableSettings from '@/components/settings/TableSettings.vue'
-import { PROXY_CHAIN_DIRECTION } from '@/config'
-import { proxyChainDirection, useConnectionCard } from '@/store/settings'
+import { PROXY_CHAIN_DIRECTION, TABLE_SIZE, TABLE_WIDTH_MODE } from '@/constant'
+import { proxyChainDirection, tableSize, tableWidthMode, useConnectionCard } from '@/store/settings'
 </script>

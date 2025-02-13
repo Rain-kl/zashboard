@@ -7,8 +7,8 @@ import {
   isSingBox,
   selectProxyAPI,
 } from '@/api'
-import { useNotification } from '@/composables/tip'
-import { IPV6_TEST_URL, NOT_CONNECTED, PROXY_TYPE } from '@/config'
+import { useNotification } from '@/composables/notification'
+import { IPV6_TEST_URL, NOT_CONNECTED, PROXY_TYPE } from '@/constant'
 import { isProxyGroup } from '@/helper'
 import { deleteIconFromIndexedDB, getAllIconKeys } from '@/helper/utils'
 import type { Proxy, ProxyProvider } from '@/types'
@@ -238,13 +238,16 @@ watch(allIcons, async (values) => {
   })
 })
 
-const { showNotification } = useNotification(2000)
+const { showNotification } = useNotification()
 const latencyTip = (finished: number, total: number) => {
+  const isFinished = finished === total
+
   showNotification({
     content: 'testFinishedTip',
     params: {
       number: `${finished}/${total}`,
     },
-    type: finished === total ? 'alert-success' : 'alert-warning',
+    type: isFinished ? 'alert-success' : 'alert-warning',
+    timeout: isFinished ? 2000 : 0,
   })
 }

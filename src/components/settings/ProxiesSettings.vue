@@ -6,14 +6,42 @@
     <div class="card-body">
       <div class="grid grid-cols-1 gap-2 lg:grid-cols-2">
         <div class="flex w-full items-center gap-2">
-          <span> {{ $t('speedtestUrl') }}: </span>
+          <span> {{ $t('speedtestUrl') }} </span>
           <TextInput
             class="w-36 flex-1 sm:max-w-80"
             v-model="speedtestUrl"
+            :clearable="true"
           />
         </div>
         <div class="flex w-full items-center gap-2">
-          <span> {{ $t('independentLatencyTest') }}: </span>
+          <span> {{ $t('speedtestTimeout') }} </span>
+          <input
+            type="number"
+            class="input input-sm input-bordered w-20"
+            v-model="speedtestTimeout"
+          />
+          ms
+        </div>
+        <div class="flex items-center gap-2">
+          <span> {{ $t('lowLatencyDesc') }} </span>
+          <input
+            type="number"
+            class="input input-sm input-bordered w-20"
+            v-model="lowLatency"
+          />
+          ms
+        </div>
+        <div class="flex items-center gap-2">
+          <span> {{ $t('mediumLatencyDesc') }} </span>
+          <input
+            type="number"
+            class="input input-sm input-bordered w-20"
+            v-model="mediumLatency"
+          />
+          ms
+        </div>
+        <div class="flex w-full items-center gap-2">
+          <span> {{ $t('independentLatencyTest') }} </span>
           <input
             class="toggle"
             type="checkbox"
@@ -24,35 +52,8 @@
             @mouseenter="independentLatencyTestTip"
           />
         </div>
-        <div class="flex w-full items-center gap-2">
-          <span> {{ $t('speedtestTimeout') }}: </span>
-          <input
-            type="number"
-            class="input input-sm input-bordered w-20"
-            v-model="speedtestTimeout"
-          />
-          ms
-        </div>
         <div class="flex items-center gap-2">
-          <span> {{ $t('lowLatencyDesc') }}: </span>
-          <input
-            type="number"
-            class="input input-sm input-bordered w-20"
-            v-model="lowLatency"
-          />
-          ms
-        </div>
-        <div class="flex items-center gap-2">
-          <span> {{ $t('mediumLatencyDesc') }}: </span>
-          <input
-            type="number"
-            class="input input-sm input-bordered w-20"
-            v-model="mediumLatency"
-          />
-          ms
-        </div>
-        <div class="flex items-center gap-2">
-          {{ $t('ipv6Test') }}:
+          {{ $t('ipv6Test') }}
           <input
             class="toggle"
             type="checkbox"
@@ -63,7 +64,7 @@
       <div class="divider"></div>
       <div class="grid grid-cols-1 gap-2 lg:grid-cols-2">
         <div class="flex items-center gap-2 max-sm:hidden">
-          {{ $t('twoColumnProxyGroup') }}:
+          {{ $t('twoColumnProxyGroup') }}
           <input
             class="toggle"
             type="checkbox"
@@ -71,7 +72,7 @@
           />
         </div>
         <div class="flex items-center gap-2">
-          {{ $t('proxyPreviewType') }}:
+          {{ $t('proxyPreviewType') }}
           <select
             class="select select-bordered select-sm min-w-24"
             v-model="proxyPreviewType"
@@ -86,7 +87,7 @@
           </select>
         </div>
         <div class="flex items-center gap-2">
-          {{ $t('truncateProxyName') }}:
+          {{ $t('truncateProxyName') }}
           <input
             class="toggle"
             type="checkbox"
@@ -94,7 +95,7 @@
           />
         </div>
         <div class="flex items-center gap-2">
-          {{ $t('proxyCardSize') }}:
+          {{ $t('proxyCardSize') }}
           <select
             class="select select-bordered select-sm min-w-24"
             v-model="proxyCardSize"
@@ -110,7 +111,7 @@
         </div>
         <template v-if="hasIcon">
           <div class="flex items-center gap-2">
-            {{ $t('iconSize') }}:
+            {{ $t('iconSize') }}
             <input
               type="number"
               class="input input-sm input-bordered w-20"
@@ -118,7 +119,7 @@
             />
           </div>
           <div class="flex items-center gap-2">
-            {{ $t('iconMarginRight') }}:
+            {{ $t('iconMarginRight') }}
             <input
               type="number"
               class="input input-sm input-bordered w-20"
@@ -132,7 +133,7 @@
 </template>
 
 <script setup lang="ts">
-import { PROXY_CARD_SIZE, PROXY_PREVIEW_TYPE } from '@/config'
+import { PROXY_CARD_SIZE, PROXY_PREVIEW_TYPE } from '@/constant'
 import { useTooltip } from '@/helper/tooltip'
 import { proxyMap } from '@/store/proxies'
 import {

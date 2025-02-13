@@ -1,13 +1,12 @@
 <template>
   <DialogWrapper v-model="connectionDetailModalShow">
     <VueJsonPretty :data="infoConn" />
-    <div class="mt-2 h-10 text-sm">
+    <div class="mt-2 min-h-10 text-sm">
       <template v-if="details">
-        {{ $t('connectionIP') }} {{ details?.ip }}
+        {{ $t('connectionIP') }} {{ details?.ip }} ( AS{{ details?.asn }} )
         <div class="flex gap-3">
           {{ details?.country }}
           {{ details?.asn_organization }}
-          ( AS{{ details?.asn }} )
         </div>
       </template>
     </div>

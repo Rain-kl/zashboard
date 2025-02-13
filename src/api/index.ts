@@ -1,8 +1,8 @@
-import { useNotification } from '@/composables/tip'
-import { ROUTE_NAME } from '@/config'
+import { useNotification } from '@/composables/notification'
+import { ROUTE_NAME } from '@/constant'
 import { getUrlFromBackend } from '@/helper'
 import router from '@/router'
-import { autoUpgradeCore } from '@/store/settings'
+import { autoUpgradeCore, checkUpgradeCore } from '@/store/settings'
 import { activeBackend, activeUuid, removeBackend } from '@/store/setup'
 import type { Backend, Config, DNSQuery, Proxy, ProxyProvider, Rule, RuleProvider } from '@/types'
 import axios from 'axios'
@@ -48,7 +48,7 @@ watch(
       const { data } = await fetchVersionAPI()
 
       version.value = data.version
-      if (isSingBox.value) return
+      if (isSingBox.value || !checkUpgradeCore.value) return
       isCoreUpdateAvailable.value = await fetchBackendUpdateAvailableAPI()
 
       if (isCoreUpdateAvailable.value && autoUpgradeCore.value) {

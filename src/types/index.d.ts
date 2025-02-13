@@ -139,3 +139,9 @@ export type DNSQuery = {
     type: number
   }[]
 }
+
+export type SourceIPLabel = {
+  key: string
+  label: string
+  id: string
+}

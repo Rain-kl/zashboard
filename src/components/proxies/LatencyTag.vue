@@ -25,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-import { NOT_CONNECTED } from '@/config'
+import { NOT_CONNECTED } from '@/constant'
 import { getColorForLatency } from '@/helper'
 import { getLatencyByName } from '@/store/proxies'
 import { BoltIcon } from '@heroicons/vue/24/outline'

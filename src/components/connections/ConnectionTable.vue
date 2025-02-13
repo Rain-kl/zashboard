@@ -8,10 +8,13 @@
   >
     <div :style="{ height: `${totalSize}px` }">
       <table
-        :class="`table table-zebra ${sizeOfTable} rounded-none shadow-md`"
+        :class="[
+          'table table-zebra rounded-none shadow-md',
+          sizeOfTable,
+          isManualTable && 'table-fixed',
+        ]"
         :style="
           isManualTable && {
-            tableLayout: 'fixed',
             width: `${tanstackTable.getCenterTotalSize()}px`,
           }
         "
@@ -149,7 +152,7 @@ import {
   PROXY_CHAIN_DIRECTION,
   TABLE_SIZE,
   TABLE_WIDTH_MODE,
-} from '@/config'
+} from '@/constant'
 import {
   fromNow,
   getDestinationFromConnection,
@@ -170,7 +173,6 @@ import {
   ArrowDownCircleIcon,
   ArrowRightCircleIcon,
   ArrowUpCircleIcon,
-  InformationCircleIcon,
   MagnifyingGlassMinusIcon,
   MagnifyingGlassPlusIcon,
   XMarkIcon,
@@ -199,7 +201,6 @@ import ProxyName from '../proxies/ProxyName.vue'
 
 const { handlerInfo } = useConnections()
 const columnWidthMap = useStorage('config/table-column-width', {
-  [CONNECTIONS_TABLE_ACCESSOR_KEY.Details]: 50,
   [CONNECTIONS_TABLE_ACCESSOR_KEY.Close]: 50,
   [CONNECTIONS_TABLE_ACCESSOR_KEY.Host]: 320,
   [CONNECTIONS_TABLE_ACCESSOR_KEY.Chains]: 320,
@@ -220,29 +221,6 @@ const columnWidthMap = useStorage('config/table-column-width', {
 const isManualTable = computed(() => tableWidthMode.value === TABLE_WIDTH_MODE.MANUAL)
 const { t } = useI18n()
 const columns: ColumnDef<Connection>[] = [
-  {
-    header: () => t('details'),
-    enableSorting: false,
-    id: CONNECTIONS_TABLE_ACCESSOR_KEY.Details,
-    cell: ({ row }) => {
-      return h(
-        'button',
-        {
-          class: 'btn btn-xs btn-circle',
-          onClick: () => {
-            const connection = row.original
-
-            handlerInfo(connection)
-          },
-        },
-        [
-          h(InformationCircleIcon, {
-            class: 'h-4 w-4',
-          }),
-        ],
-      )
-    },
-  },
   {
     header: () => t('close'),
     enableSorting: false,
