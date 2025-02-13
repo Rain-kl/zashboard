@@ -87,9 +87,15 @@ export const useSwipeRouter = () => {
     ]?.[1]?.()
   }
 
+  const isInputActive = () => {
+    const activeEl = document.activeElement
+    return activeEl && (activeEl.tagName === 'INPUT' || activeEl.tagName === 'TEXTAREA')
+  }
+
   watch(direction, () => {
     if (
       document.querySelector('dialog:modal') ||
+      isInputActive() ||
       window.getSelection()?.toString()?.length ||
       disableSwipe.value
     )

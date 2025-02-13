@@ -12,9 +12,6 @@
       :placeholder="placeholder || ''"
       :name="name || ''"
       :autocomplete="autocomplete || ''"
-      @touchstart.stop
-      @touchmove.stop
-      @touchend.stop
     />
     <XMarkIcon
       v-if="!beforeClose && clearable"
