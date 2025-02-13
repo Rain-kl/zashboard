@@ -1,6 +1,6 @@
 import { disconnectByIdAPI } from '@/api'
 import { useConnections } from '@/composables/connections'
-import { CONNECTIONS_TABLE_ACCESSOR_KEY, PROXY_CHAIN_DIRECTION } from '@/config'
+import { CONNECTIONS_TABLE_ACCESSOR_KEY, PROXY_CHAIN_DIRECTION } from '@/constant'
 import {
   fromNow,
   getDestinationFromConnection,
@@ -17,7 +17,6 @@ import {
   ArrowRightCircleIcon,
   ArrowUpCircleIcon,
   ArrowUpIcon,
-  InformationCircleIcon,
   XMarkIcon,
 } from '@heroicons/vue/24/outline'
 import { first, last } from 'lodash'
@@ -46,33 +45,33 @@ export default defineComponent<{
           </span>
         ),
         [CONNECTIONS_TABLE_ACCESSOR_KEY.Destination]: (
-          <span class="w-80 grow break-all">{getDestinationFromConnection(conn)}</span>
+          <span class="w-80 grow truncate break-all">{getDestinationFromConnection(conn)}</span>
         ),
         [CONNECTIONS_TABLE_ACCESSOR_KEY.SourceIP]: (
-          <span class="w-40 grow break-all">{getIPLabelFromMap(metadata.sourceIP)}</span>
+          <span class="w-40 grow truncate break-all">{getIPLabelFromMap(metadata.sourceIP)}</span>
         ),
         [CONNECTIONS_TABLE_ACCESSOR_KEY.SourcePort]: (
-          <span class="w-20 grow break-all">{metadata.sourcePort}</span>
+          <span class="w-20 grow truncate break-all">{metadata.sourcePort}</span>
         ),
         [CONNECTIONS_TABLE_ACCESSOR_KEY.SniffHost]: (
-          <span class="w-80 grow break-all">{metadata.sniffHost || '-'}</span>
+          <span class="w-80 grow truncate break-all">{metadata.sniffHost || '-'}</span>
         ),
         [CONNECTIONS_TABLE_ACCESSOR_KEY.Type]: (
-          <span class="w-60 grow break-all">{getNetworkTypeFromConnection(conn)}</span>
+          <span class="w-60 grow truncate break-all">{getNetworkTypeFromConnection(conn)}</span>
         ),
         [CONNECTIONS_TABLE_ACCESSOR_KEY.Rule]: (
-          <span class="w-80 grow break-all">
+          <span class="w-80 grow truncate break-all">
             {conn.rule}
             {conn.rulePayload && <>: {conn.rulePayload}</>}
           </span>
         ),
         [CONNECTIONS_TABLE_ACCESSOR_KEY.Process]: (
-          <span class="w-60 grow break-all">{getProcessFromConnection(conn)}</span>
+          <span class="w-60 grow truncate break-all">{getProcessFromConnection(conn)}</span>
         ),
         [CONNECTIONS_TABLE_ACCESSOR_KEY.Chains]: (
           <span
             class={[
-              'flex w-80 grow items-center gap-1 break-all',
+              'flex w-80 grow items-center gap-1 truncate break-all',
               proxyChainDirection.value === PROXY_CHAIN_DIRECTION.REVERSE &&
                 'flex-row-reverse justify-end',
             ]}
@@ -112,14 +111,6 @@ export default defineComponent<{
         ),
         [CONNECTIONS_TABLE_ACCESSOR_KEY.ConnectTime]: (
           <div class="gap-1 whitespace-nowrap">{fromNow(conn.start)}</div>
-        ),
-        [CONNECTIONS_TABLE_ACCESSOR_KEY.Details]: (
-          <button
-            class="btn btn-circle btn-xs"
-            onClick={() => handlerInfo(conn)}
-          >
-            <InformationCircleIcon class="h-4 w-4" />
-          </button>
         ),
         [CONNECTIONS_TABLE_ACCESSOR_KEY.Close]: (
           <button

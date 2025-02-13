@@ -37,7 +37,7 @@
         />
       </div>
       <div
-        class="flex items-center gap-2 text-base-content/80"
+        class="mt-[2px] flex items-center gap-2 text-base-content/80"
         @contextmenu.prevent.stop="handlerLatencyTest"
       >
         <div class="flex flex-1 items-center gap-1 text-sm">
@@ -79,7 +79,7 @@
 </template>
 
 <script setup lang="ts">
-import { PROXY_TYPE } from '@/config'
+import { PROXY_TYPE } from '@/constant'
 import { prettyBytesHelper, sortAndFilterProxyNodes } from '@/helper'
 import { activeConnections } from '@/store/connections'
 import { hiddenGroupMap, proxyGroupLatencyTest, proxyMap, selectProxy } from '@/store/proxies'

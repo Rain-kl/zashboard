@@ -52,7 +52,7 @@
 </template>
 
 <script setup lang="ts">
-import { NOT_CONNECTED, PROXY_PREVIEW_TYPE } from '@/config'
+import { NOT_CONNECTED, PROXY_PREVIEW_TYPE } from '@/constant'
 import { getColorForLatency } from '@/helper'
 import { useTooltip } from '@/helper/tooltip'
 import { getLatencyByName } from '@/store/proxies'

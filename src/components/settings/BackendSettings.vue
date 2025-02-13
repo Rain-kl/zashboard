@@ -3,10 +3,10 @@
   <div class="card card-compact">
     <div class="card-title px-4 pt-4">
       {{ $t('backend') }}
+      <BackendVersion class="text-sm font-normal" />
     </div>
     <div class="card-body gap-4">
       <BackendSwitch />
-      <BackendVersion />
 
       <template v-if="!isSingBox && configs">
         <div class="divider"></div>
@@ -16,7 +16,7 @@
             v-for="portConfig in portList"
             :key="portConfig.key"
           >
-            <span class="shrink-0"> {{ $t(portConfig.label) }}: </span>
+            <span class="shrink-0"> {{ $t(portConfig.label) }} </span>
             <input
               class="input input-sm input-bordered w-20 sm:w-24"
               type="number"
@@ -27,12 +27,12 @@
             />
           </div>
         </div>
-        <div class="grid max-w-screen-md grid-cols-2 gap-2 lg:grid-cols-3">
+        <div class="grid max-w-screen-md grid-cols-2 gap-2 lg:grid-cols-4">
           <div
             class="flex items-center gap-2"
             v-if="configs?.tun"
           >
-            {{ $t('tunMode') }}:
+            {{ $t('tunMode') }}
             <input
               class="toggle"
               type="checkbox"
@@ -41,7 +41,7 @@
             />
           </div>
           <div class="flex items-center gap-2">
-            {{ $t('allowLan') }}:
+            {{ $t('allowLan') }}
             <input
               class="toggle"
               type="checkbox"
@@ -50,7 +50,19 @@
             />
           </div>
           <div class="flex items-center gap-2">
-            {{ $t('autoUpgrade') }}:
+            {{ $t('checkUpgrade') }}
+            <input
+              class="toggle"
+              type="checkbox"
+              v-model="checkUpgradeCore"
+              @change="handlerCheckUpgradeCoreChange"
+            />
+          </div>
+          <div
+            class="flex items-center gap-2"
+            v-if="checkUpgradeCore"
+          >
+            {{ $t('autoUpgrade') }}
             <input
               class="toggle"
               type="checkbox"
@@ -61,7 +73,7 @@
       </template>
 
       <div
-        class="grid max-w-screen-lg grid-cols-2 gap-2 md:grid-cols-3 xl:grid-cols-5"
+        class="grid max-w-screen-lg grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-5"
         v-if="version"
       >
         <template v-if="!isSingBox">
@@ -131,7 +143,7 @@ import DnsQuery from '@/components/settings/DnsQuery.vue'
 import { configs, fetchConfigs, updateConfigs } from '@/store/config'
 import { fetchProxies } from '@/store/proxies'
 import { fetchRules } from '@/store/rules'
-import { autoUpgradeCore } from '@/store/settings'
+import { autoUpgradeCore, checkUpgradeCore } from '@/store/settings'
 import type { Config } from '@/types'
 import { twMerge } from 'tailwind-merge'
 import { ref } from 'vue'
@@ -216,6 +228,13 @@ const handlerClickUpdateGeo = async () => {
     isGeoUpdating.value = false
   } catch {
     isGeoUpdating.value = false
+  }
+}
+
+const handlerCheckUpgradeCoreChange = () => {
+  if (!checkUpgradeCore.value) {
+    autoUpgradeCore.value = false
+    isCoreUpdateAvailable.value = false
   }
 }
 

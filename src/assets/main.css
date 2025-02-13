@@ -11,7 +11,7 @@
   .card,
   .collapse {
     background-color: var(--fallback-b1, oklch(var(--b1) / var(--tw-bg-opacity, 1)));
-    @apply rounded-btn shadow-md;
+    @apply rounded-lg shadow-md;
   }
 
   .table tr {
@@ -58,6 +58,7 @@
 .tippy-box {
   @apply z-[9999] bg-neutral text-neutral-content shadow-md;
 }
+
 .tippy-box[data-placement^='top'] > .tippy-arrow:before {
   @apply border-t-neutral;
 }

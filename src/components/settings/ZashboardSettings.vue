@@ -1,27 +1,31 @@
 <template>
   <!-- dashboard -->
   <div class="card card-compact">
-    <div class="card-title px-4 pt-4 text-primary">
+    <div class="card-title px-4 pt-4">
       <div class="indicator">
         <span
           v-if="isUIUpdateAvailable"
-          class="indicator-item flex"
+          class="indicator-item"
         >
           <span class="badge badge-xs absolute animate-ping bg-secondary"></span>
-          <span class="badge badge-xs bg-secondary"></span>
+          <span class="badge badge-xs absolute bg-secondary"></span>
         </span>
         <a
           href="https://github.com/Zephyruso/zashboard"
           target="_blank"
-          >zashboard v{{ zashboardVersion }}</a
         >
+          <span> zashboard </span>
+          <span class="text-sm font-normal">
+            {{ zashboardVersion }}
+          </span>
+        </a>
       </div>
     </div>
     <div class="card-body gap-4">
       <div class="grid grid-cols-1 gap-2 xl:grid-cols-2">
         <div class="flex flex-col gap-2">
           <div class="flex items-center gap-2">
-            {{ $t('theme') }}:
+            {{ $t('theme') }}
             <select
               class="select select-bordered select-sm w-48"
               v-model="theme"
@@ -37,7 +41,7 @@
           </div>
           <LanguageSelect />
           <div class="flex items-center gap-2">
-            {{ $t('fonts') }}:
+            {{ $t('fonts') }}
             <select
               class="select select-bordered select-sm w-48"
               v-model="font"
@@ -54,11 +58,12 @@
         </div>
         <div class="flex flex-col gap-2">
           <div class="flex flex-col gap-2 sm:flex-row sm:items-center">
-            <span class="shrink-0"> {{ $t('customBackgroundURL') }}: </span>
+            <span class="shrink-0"> {{ $t('customBackgroundURL') }} </span>
             <div class="join">
               <TextInput
                 class="join-item flex-1"
                 v-model="customBackgroundURL"
+                :clearable="true"
                 @update:modelValue="handlerBackgroundURLChange"
               />
               <button
@@ -79,11 +84,8 @@
           <div
             class="flex items-center gap-2"
             v-if="customBackgroundURL"
-            @touchstart.stop
-            @touchmove.stop
-            @touchend.stop
           >
-            {{ $t('transparent') }}:
+            {{ $t('transparent') }}
             <input
               type="range"
               min="0"
@@ -93,7 +95,7 @@
             />
           </div>
           <div class="flex items-center gap-2 md:hidden">
-            {{ $t('swipeInTabs') }}:
+            {{ $t('swipeInTabs') }}
             <input
               type="checkbox"
               v-model="swipeInTabs"
@@ -107,7 +109,7 @@
         class="flex items-center gap-2"
         v-if="!isSingBox"
       >
-        {{ $t('autoUpgrade') }}:
+        {{ $t('autoUpgrade') }}
         <input
           class="toggle"
           type="checkbox"
@@ -146,7 +148,7 @@
 import { isSingBox, upgradeUIAPI, zashboardVersion } from '@/api'
 import LanguageSelect from '@/components/settings/LanguageSelect.vue'
 import { useSettings } from '@/composables/settings'
-import { FONTS } from '@/config'
+import { FONTS } from '@/constant'
 import { exportSettings } from '@/helper'
 import {
   clearIconFromIndexedDB,

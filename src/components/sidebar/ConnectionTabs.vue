@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { CONNECTION_TAB_TYPE } from '@/config'
+import { CONNECTION_TAB_TYPE } from '@/constant'
 import { connections, connectionTabShow, renderConnections } from '@/store/connections'
 import { twMerge } from 'tailwind-merge'
 import { computed } from 'vue'

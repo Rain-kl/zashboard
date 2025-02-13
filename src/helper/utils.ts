@@ -1,6 +1,7 @@
 import { useMediaQuery } from '@vueuse/core'
 
-export const isLargeScreen = useMediaQuery('(min-width: 1024px)')
+export const twoColumn = useMediaQuery('(min-width: 810px)')
+export const twoColumnWithSidebar = useMediaQuery('(min-width: 1130px)')
 export const isMiddleScreen = useMediaQuery('(max-width: 768px)')
 
 const BACKGROUND_IMAGE = 'background-image'

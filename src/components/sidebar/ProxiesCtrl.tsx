@@ -1,7 +1,7 @@
 import { updateProxyProviderAPI } from '@/api'
 import { collapsedBus } from '@/composables/bus'
 import { proxiesFilter, useProxies } from '@/composables/proxies'
-import { PROXY_SORT_TYPE, PROXY_TAB_TYPE } from '@/config'
+import { PROXY_SORT_TYPE, PROXY_TAB_TYPE } from '@/constant'
 import { isMiddleScreen } from '@/helper/utils'
 import { configs, updateConfigs } from '@/store/config'
 import { allProxiesLatencyTest, fetchProxies, proxyProviederList } from '@/store/proxies'
@@ -192,6 +192,7 @@ export default defineComponent({
           class="w-80"
           v-model={proxiesFilter.value}
           placeholder={t('search')}
+          clearable={true}
         />
       )
 

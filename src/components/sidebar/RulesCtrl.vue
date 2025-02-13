@@ -41,15 +41,16 @@
       class="w-full md:max-w-80"
       v-model="rulesFilter"
       :placeholder="$t('search')"
+      :clearable="true"
     />
   </div>
 </template>
 
 <script setup lang="ts">
 import { updateRuleProviderAPI } from '@/api'
+import { useNotification } from '@/composables/notification'
 import { rulesTabShow } from '@/composables/rules'
-import { useNotification } from '@/composables/tip'
-import { RULE_TAB_TYPE } from '@/config'
+import { RULE_TAB_TYPE } from '@/constant'
 import { fetchRules, ruleProviderList, rulesFilter } from '@/store/rules'
 import { twMerge } from 'tailwind-merge'
 import { ref } from 'vue'
@@ -71,12 +72,16 @@ const handlerClickUpgradeAllProviders = async () => {
       ruleProviderList.value.map((provider) =>
         updateRuleProviderAPI(provider.name).then(() => {
           updateCount++
+
+          const isFinished = updateCount === ruleProviderList.value.length
+
           showNotification({
             content: 'updateFinishedTip',
             params: {
               number: `${updateCount}/${ruleProviderList.value.length}`,
             },
-            type: updateCount === ruleProviderList.value.length ? 'alert-success' : 'alert-warning',
+            type: isFinished ? 'alert-success' : 'alert-warning',
+            timeout: isFinished ? 2000 : 0,
           })
         }),
       ),

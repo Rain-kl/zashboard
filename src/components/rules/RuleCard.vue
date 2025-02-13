@@ -39,7 +39,7 @@
 </template>
 
 <script setup lang="ts">
-import { NOT_CONNECTED } from '@/config'
+import { NOT_CONNECTED } from '@/constant'
 import { getColorForLatency } from '@/helper'
 import { getLatencyByName, proxyMap } from '@/store/proxies'
 import type { Rule } from '@/types'

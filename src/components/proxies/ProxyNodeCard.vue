@@ -45,7 +45,7 @@
 </template>
 
 <script setup lang="ts">
-import { PROXY_CARD_SIZE } from '@/config'
+import { PROXY_CARD_SIZE } from '@/constant'
 import { useTooltip } from '@/helper/tooltip'
 import { getIPv6ByName, getTestUrl, proxyLatencyTest, proxyMap } from '@/store/proxies'
 import { IPv6test, proxyCardSize, truncateProxyName } from '@/store/settings'

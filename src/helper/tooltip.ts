@@ -25,7 +25,12 @@ export const useTooltip = () => {
     })
   }
 
+  const destroyTip = () => {
+    tippyInstance?.hide()
+  }
+
   return {
     showTip,
+    destroyTip,
   }
 }

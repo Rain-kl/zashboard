@@ -1,5 +1,6 @@
 import {
   CONNECTIONS_TABLE_ACCESSOR_KEY,
+  DETAILED_CARD_STYLE,
   FONTS,
   LANG,
   PROXY_CARD_SIZE,
@@ -8,9 +9,12 @@ import {
   PROXY_SORT_TYPE,
   TABLE_SIZE,
   TABLE_WIDTH_MODE,
-} from '@/config'
+} from '@/constant'
 import { isMiddleScreen } from '@/helper/utils'
+import type { SourceIPLabel } from '@/types'
 import { useStorage } from '@vueuse/core'
+import { isEmpty } from 'lodash'
+import { v4 as uuid } from 'uuid'
 import { computed, ref } from 'vue'
 
 // global
@@ -38,6 +42,7 @@ export const font = useStorage<FONTS>('config/font', FONTS.MI_SANS)
 export const customBackgroundURL = useStorage('config/custom-background-image', '')
 export const dashboardTransparent = useStorage('config/dashboard-transparent', 90)
 export const autoUpgrade = useStorage('config/auto-upgrade', false)
+export const checkUpgradeCore = useStorage('config/check-upgrade-core', true)
 export const autoUpgradeCore = useStorage('config/auto-upgrade-core', false)
 export const swipeInTabs = useStorage('config/swipe-in-tabs', false)
 
@@ -103,16 +108,29 @@ export const connectionTableColumns = useStorage<CONNECTIONS_TABLE_ACCESSOR_KEY[
 )
 export const connectionCardLines = useStorage<CONNECTIONS_TABLE_ACCESSOR_KEY[][]>(
   'config/connection-card-lines',
-  [
-    [CONNECTIONS_TABLE_ACCESSOR_KEY.Host, CONNECTIONS_TABLE_ACCESSOR_KEY.ConnectTime],
-    [
-      CONNECTIONS_TABLE_ACCESSOR_KEY.Chains,
-      CONNECTIONS_TABLE_ACCESSOR_KEY.DlSpeed,
-      CONNECTIONS_TABLE_ACCESSOR_KEY.Close,
-    ],
-  ],
+  DETAILED_CARD_STYLE,
 )
-export const sourceIPLabelMap = useStorage<Record<string, string>>('config/source-ip-label-map', {})
+
+const filterLegacyDetailsOpt = (key: string) => key !== 'details'
+
+connectionTableColumns.value = connectionTableColumns.value.filter(filterLegacyDetailsOpt)
+connectionCardLines.value = connectionCardLines.value.map((lines) =>
+  lines.filter(filterLegacyDetailsOpt),
+)
+
+const sourceIPLabelMap = useStorage<Record<string, string>>('config/source-ip-label-map', {})
+
+export const sourceIPLabelList = useStorage<SourceIPLabel[]>('config/source-ip-label-list', () => {
+  const oldMap = sourceIPLabelMap.value
+
+  if (isEmpty(oldMap)) {
+    return []
+  }
+
+  return Object.entries(oldMap)
+    .sort((prev, next) => prev[0].localeCompare(next[0]))
+    .map(([key, label]) => ({ key, label, id: uuid() }))
+})
 
 // logs
 export const logRetentionLimit = useStorage<number>('config/log-retention-limit', 1000)

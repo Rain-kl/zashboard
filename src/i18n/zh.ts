@@ -48,7 +48,6 @@ const zh: LANG_MESSAGE = {
   customTableColumns: '自定义表格列',
   customCardLines: '自定义卡片行',
   close: '关闭',
-  details: '详情',
   theme: '主题',
   proxyProvider: '代理提供商',
   ruleProvider: '规则提供商',
@@ -90,6 +89,7 @@ const zh: LANG_MESSAGE = {
   fonts: '字体',
   unauthorizedTip: '未授权，请重新登录',
   restartCore: '重启核心',
+  checkUpgrade: '检查更新',
   autoUpgrade: '自动更新',
   secondaryPath: '二级路径',
   secondaryPathTip: '如果有的话以/开头，没有则留空不填',
@@ -153,6 +153,8 @@ const zh: LANG_MESSAGE = {
   optional: '可选',
   swipeInTabs: '滑动切换页面内的标签页',
   connectionIP: '连接IP',
+  simpleCardPreset: '简洁预设',
+  detailedCardPreset: '详细预设',
 }
 
 export default zh

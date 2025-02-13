@@ -29,7 +29,7 @@
 
 <script setup lang="ts">
 import VirtualScroller from '@/components/common/VirtualScroller.vue'
-import { LOG_LEVEL } from '@/config'
+import { LOG_LEVEL } from '@/constant'
 import { isMiddleScreen } from '@/helper/utils'
 import { logFilter, logs } from '@/store/logs'
 import type { LogWithSeq } from '@/types'

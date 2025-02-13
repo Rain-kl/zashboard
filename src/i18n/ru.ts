@@ -48,7 +48,6 @@ const ru: LANG_MESSAGE = {
   customTableColumns: 'Пользовательские столбцы таблицы',
   customCardLines: 'Пользовательские строчки карточки',
   close: 'Закрыть',
-  details: 'Детали',
   theme: 'Тема',
   proxyProvider: 'Провайдер прокси',
   ruleProvider: 'Провайдер правил',
@@ -90,6 +89,7 @@ const ru: LANG_MESSAGE = {
   fonts: 'Шрифты',
   unauthorizedTip: 'Не авторизован, пожалуйста, войдите снова.',
   restartCore: 'Перезапустить ядро',
+  checkUpgrade: 'Проверить обновления',
   autoUpgrade: 'Автоматическое обновление',
   secondaryPath: 'Дополнительный путь',
   secondaryPathTip: 'Если присутствует, начните с "/", в противном случае оставьте пустым.',
@@ -155,6 +155,8 @@ const ru: LANG_MESSAGE = {
   optional: 'Необязательно',
   swipeInTabs: 'Свайп для переключения между вкладками на странице.',
   connectionIP: 'IP-источник соединения',
+  simpleCardPreset: 'Простой карточки',
+  detailedCardPreset: 'Подробный карточки',
 }
 
 export default ru

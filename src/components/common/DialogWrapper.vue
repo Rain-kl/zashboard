@@ -3,9 +3,6 @@
     ref="modalRef"
     class="modal"
     @close="isOpen = false"
-    @touchstart.stop
-    @touchmove.stop
-    @touchend.stop
   >
     <div class="modal-box relative overflow-hidden p-0">
       <form method="dialog">
@@ -13,7 +10,7 @@
           <XMarkIcon class="h-4 w-4" />
         </button>
       </form>
-      <div class="max-h-[90vh] overflow-y-auto p-4 max-md:max-h-[70vh]">
+      <div class="max-h-[90vh] overflow-y-auto p-4 scrollbar-thin max-md:max-h-[70vh]">
         <slot></slot>
       </div>
     </div>

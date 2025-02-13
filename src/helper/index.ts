@@ -1,5 +1,5 @@
 import { proxiesFilter } from '@/composables/proxies'
-import { NOT_CONNECTED, PROXY_SORT_TYPE, PROXY_TYPE, ROUTE_NAME } from '@/config'
+import { NOT_CONNECTED, PROXY_SORT_TYPE, PROXY_TYPE, ROUTE_NAME } from '@/constant'
 import { timeSaved } from '@/store/overview'
 import { getLatencyByName, proxyMap } from '@/store/proxies'
 import {
@@ -8,7 +8,7 @@ import {
   lowLatency,
   mediumLatency,
   proxySortType,
-  sourceIPLabelMap,
+  sourceIPLabelList,
   splitOverviewPage,
 } from '@/store/settings'
 import type { Backend, Connection } from '@/types'
@@ -99,15 +99,15 @@ export const getIPLabelFromMap = (ip: string) => {
   }
   const isIPv6 = ip.includes(':')
 
-  for (const key in sourceIPLabelMap.value) {
+  for (const { key, label } of sourceIPLabelList.value) {
     if (key.startsWith('/')) {
       const regex = new RegExp(key, 'i')
 
       if (regex.test(ip)) {
-        return sourceIPLabelMap.value[key]
+        return label
       }
     } else if (ip === key || (isIPv6 && ip.endsWith(key))) {
-      return sourceIPLabelMap.value[key]
+      return label
     }
   }
   return ip
