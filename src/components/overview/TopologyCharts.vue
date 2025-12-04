@@ -182,17 +182,53 @@ const sankeyData = computed(() => {
     }
   })
 
-  const nodes = Array.from(nodeMap.entries()).map(([name, index]) => ({
+  // 创建初始节点数组
+  const initialNodes = Array.from(nodeMap.entries()).map(([name, index]) => ({
     id: index,
     name: name,
     nodeType: nodeTypeMap.get(name) || t('unknown'),
+    layer: layerMap.get(name) || 0,
     itemStyle: {
       color: layerColors[layerMap.get(name) || 0],
     },
   }))
 
+  // 按层分组节点
+  const nodesByLayer = new Map<number, typeof initialNodes>()
+  initialNodes.forEach((node) => {
+    const layer = node.layer
+    if (!nodesByLayer.has(layer)) {
+      nodesByLayer.set(layer, [])
+    }
+    nodesByLayer.get(layer)!.push(node)
+  })
+
+  // 对每一层的节点按名称进行字典排序
+  const sortedLayers = Array.from(nodesByLayer.keys()).sort((a, b) => a - b)
+  const idMapping = new Map<number, number>() // 旧 id -> 新 id 映射
+  const sortedNodes: typeof initialNodes = []
+  let newId = 0
+
+  sortedLayers.forEach((layer) => {
+    const layerNodes = nodesByLayer.get(layer)!
+    // 对当前层的节点按名称进行字典排序
+    layerNodes.sort((a, b) => a.name.localeCompare(b.name))
+    // 重新分配 id
+    layerNodes.forEach((node) => {
+      idMapping.set(node.id, newId)
+      sortedNodes.push({
+        ...node,
+        id: newId,
+      })
+      newId++
+    })
+  })
+
+  // 更新 links 中的 source 和 target 引用
   const links = Array.from(linkMap.entries()).map(([link, value]) => {
-    const [source, target] = link.split('-').map(Number)
+    const [oldSource, oldTarget] = link.split('-').map(Number)
+    const source = idMapping.get(oldSource)!
+    const target = idMapping.get(oldTarget)!
     // 使用对数缩放来压缩数据范围，使小值更明显
     // 公式: log10(value + 1) * 10，确保最小值为0，同时保持相对大小关系
     const scaledValue = Math.log10(value + 1) * 10
@@ -204,7 +240,7 @@ const sankeyData = computed(() => {
     }
   })
 
-  return { nodes, links }
+  return { nodes: sortedNodes, links }
 })
 
 const layerColors = ['#6a6fc5', '#a8d4a0', '#fddb8a', '#f2a0a0']
@@ -269,10 +305,11 @@ const options = computed(() => ({
       },
       label: {
         color: colorSet.baseContent,
-        fontSize: 12,
+        fontSize: isMiddleScreen.value ? 10 : 12,
         formatter: (params: { name: string }) => {
           const name = params.name
-          return name.length > 25 ? name.substring(0, 25) + '...' : name
+          const length = isFullScreen.value ? 45 : isMiddleScreen.value ? 20 : 30
+          return name.length > length ? name.substring(0, length) + '...' : name
         },
       },
       nodeGap: 4,
